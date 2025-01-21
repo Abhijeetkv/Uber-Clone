@@ -63,8 +63,13 @@ const loginUser = async (req, res, next) => {
     .json({ token, user });
 }
 
+const getUserProfile = async (req, res, next) => {
+    
+}
+
 export default {
     registerUser,
-    loginUser
+    loginUser,
+    getUserProfile
 
  };

@@ -6,7 +6,7 @@
 Registers a new user to the system.
 
 ### HTTP Method
-POST
+`POST`
 
 ### Required Data
 
@@ -35,7 +35,7 @@ POST
 Logs in an existing user.
 
 ### HTTP Method
-POST
+`POST`
 
 ### Required Data
 - `email` (string, required): User's email (must be valid).
