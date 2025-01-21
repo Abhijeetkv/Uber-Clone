@@ -26,6 +26,9 @@ const registerUser = async (req, res, next) => {
         password: hashedPassword
     });
 
+    // console.log(user);
+    
+
     const token = user.generateAuthToken();
 
     res.status(201).json({ token, user });
