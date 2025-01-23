@@ -1,5 +1,6 @@
 import express from 'express';
 import { body } from 'express-validator';
+import driverController from '../controllers/driver.controller.js';
 
 const router = express.Router();
     
@@ -12,6 +13,8 @@ router.post('/register', [
     body('vehicle.plate').isLength({ min: 3 }).withMessage('Plate must be at least 3 characters long'),
     body('vehicle.capacity').isInt({ min: 1 }).withMessage('Capacity must be at least 1'),
     body('vehicle.vehicleType').isIn(['bike', 'car', 'auto']).withMessage('Invalid vehicle type'),
-])
+],
+driverController.registerDriver
+);
 
 export default router;
