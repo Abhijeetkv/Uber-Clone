@@ -5,6 +5,7 @@ import express from 'express';
 import cors from 'cors';
 import connectToDb from './db/db.js';
 import userRoutes from './routes/user.routes.js';
+import driverRoutes from './routes/driver.routes.js';
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/users', userRoutes);
+app.use('/drivers', driverRoutes);
 
 
 export default app;
