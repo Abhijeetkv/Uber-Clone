@@ -54,3 +54,46 @@ Logs in an existing user.
     - `lasttname` (string): user's first name (min 3 characters)
   - `email` (string): user's email address (must be a valid email)
   - `password` (string): user's password (min 6 characters)
+  
+
+## /users/profile Endpoint
+
+### Description
+Fetches the profile of the logged-in user.
+
+### HTTP Method
+`GET`
+
+### Required Data
+- `Authorization` (string, required): Bearer token for user authentication.
+
+### Status Codes
+- 200: Successfully fetched user profile
+- 401: Unauthorized access
+
+### Example Response
+
+- `user` (object):
+  - `fullname` (object):
+    - `firstname` (string): user's first name
+    - `lastname` (string): user's last name
+  - `email` (string): user's email address
+
+## /users/logout Endpoint
+
+### Description
+Logs out the current user.
+
+### HTTP Method
+`POST`
+
+### Required Data
+- `Authorization` (string, required): Bearer token for user authentication.
+
+### Status Codes
+- 200: Successfully logged out
+- 401: Unauthorized access
+
+### Example Response
+
+- `message` (string): "Successfully logged out"
