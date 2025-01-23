@@ -34,4 +34,8 @@ const createDriver = async ({
     return driver;
 }
 
-    export default { createDriver }
+const registerDriver = async (driverData) => {
+    return await createDriver(driverData);
+}
+
+export default { createDriver, registerDriver }

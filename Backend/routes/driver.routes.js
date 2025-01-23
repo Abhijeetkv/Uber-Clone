@@ -3,7 +3,7 @@ import { body } from 'express-validator';
 import driverController from '../controllers/driver.controller.js';
 
 const router = express.Router();
-    
+
 router.post('/register', [
     body('email').isEmail().withMessage('Please enter a valid email'),
     body('fullname.firstname').isLength({ min: 3 }).withMessage('First name must be at least 3 characters long'),

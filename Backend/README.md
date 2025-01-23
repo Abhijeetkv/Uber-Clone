@@ -97,3 +97,40 @@ Logs out the current user.
 ### Example Response
 
 - `message` (string): "Successfully logged out"
+
+## /drivers/register Endpoint
+
+### Description
+Registers a new driver to the system.
+
+### HTTP Method
+`POST`
+
+### Required Data
+
+- `firstname` (string, required): Driver's first name (min 3 characters)
+- `lastname` (string, optional): Driver's last name (min 3 characters)
+- `email` (string, required): Driver's email address (must be a valid email)
+- `password` (string, required): Driver's password (min 6 characters)
+- `color` (string, required): Vehicle color (min 3 characters)
+- `plate` (string, required): Vehicle plate number (min 3 characters)
+- `capacity` (integer, required): Vehicle capacity (min 1)
+- `vehicleType` (string, required): Type of vehicle (must be one of 'bike', 'car', 'auto')
+
+### Status Codes
+- 201: Successfully registered driver
+- 400: Validation errors
+
+### Example Response
+
+- `driver` (object):
+  - `fullname` (object):
+    - `firstname` (string): Driver's first name
+    - `lastname` (string): Driver's last name
+  - `email` (string): Driver's email address
+  - `vehicle` (object):
+    - `color` (string): Vehicle color
+    - `plate` (string): Vehicle plate number
+    - `capacity` (integer): Vehicle capacity
+    - `vehicleType` (string): Type of vehicle
+  - `status` (string): Driver's status (default is 'active')
