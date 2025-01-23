@@ -67,6 +67,19 @@ const driverSchema = mongoose.Schema({
         }
 })
 
+driverSchema.methods.generateAuthToken = function () {
+    const token = jwt.sign({ _id: this._id }, process.env.JWT_SECRET, { expiresIn: '24h' });
+    return token;
+}
+
+driverSchema.methods.comparePassword = async function (password) {
+    return await bcrypt.compare(password, this.password);
+}
+
+driverSchema.statics.hashPassword = async function (password) {
+    return await bcrypt.hash(password, 10);
+}
+
 const driverModel = mongoose.model('driverModel', driverSchema);
 
 export default driverModel;
