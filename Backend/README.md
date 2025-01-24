@@ -134,3 +134,106 @@ Registers a new driver to the system.
     - `capacity` (integer): Vehicle capacity
     - `vehicleType` (string): Type of vehicle
   - `status` (string): Driver's status (default is 'active')
+
+## /drivers/login Endpoint
+
+### Description
+Logs in an existing driver.
+
+### HTTP Method
+`POST`
+
+### Required Data
+
+```json
+{
+  "email": "john.doe@example.com", // string, required, must be a valid email
+  "password": "password123" // string, required, min 6 characters
+}
+```
+
+### Status Codes
+- 200: Successfully logged in
+- 400: Validation errors
+- 401: Invalid email or password
+
+### Example Response
+
+```json
+{
+  "token": "jwt_token_here",
+  "driver": {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "vehicle": {
+      "color": "Red",
+      "plate": "XYZ123",
+      "capacity": 4,
+      "vehicleType": "car"
+    },
+    "status": "active"
+  }
+}
+```
+
+## /drivers/profile Endpoint
+
+### Description
+Fetches the profile of the logged-in driver.
+
+### HTTP Method
+`GET`
+
+### Required Data
+- `Authorization` (string, required): Bearer token for driver authentication.
+
+### Status Codes
+- 200: Successfully fetched driver profile
+- 401: Unauthorized access
+
+### Example Response
+
+```json
+{
+  "driver": {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "vehicle": {
+      "color": "Red",
+      "plate": "XYZ123",
+      "capacity": 4,
+      "vehicleType": "car"
+    },
+    "status": "active"
+  }
+}
+```
+
+## /drivers/logout Endpoint
+
+### Description
+Logs out the current driver.
+
+### HTTP Method
+`POST`
+
+### Required Data
+- `Authorization` (string, required): Bearer token for driver authentication.
+
+### Status Codes
+- 200: Successfully logged out
+- 401: Unauthorized access
+
+### Example Response
+
+```json
+{
+  "message": "Successfully logged out"
+}
+```
