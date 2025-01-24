@@ -7,7 +7,7 @@ import driverModel from "../models/driver.model.js";
 
 const authUser = async (req, res, next) => {
     const token = req.cookies?.token || req.headers.authorization?.split(' ')[ 1 ];
-
+        
     if (!token) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
@@ -40,9 +40,8 @@ const authDriver = async (req, res, next) => {
     if (!token) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
-
-    const isBlacklisted = await blacklistTokenModel.findOne({ token: token });
-    
+        
+    const isBlacklisted = await blacklistTokenModel.findOne({ token });
 
     if (isBlacklisted) {
         return res.status(401).json({ message: 'Unauthorized' });
@@ -51,7 +50,9 @@ const authDriver = async (req, res, next) => {
     try {
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const driver = await driverModel.findById(decoded._id)
+        console.log('Decoded token:', decoded); // Add this line to log the decoded token
+        const driver = await driverModel.findById(decoded._id);
+        console.log('Driver:', driver); // Add this line to log the driver
 
         if (!driver) {
             return res.status(401).json({ message: 'Unauthorized: Driver not found' });

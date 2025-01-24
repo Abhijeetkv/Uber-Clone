@@ -3,7 +3,6 @@ import { validationResult } from "express-validator";
 import driverModel from "../models/driver.model.js";
 import blacklistTokenModel from "../models/blacklistToken.model.js";
 
-
 const registerDriver = async (req, res, next) => {
 
     const errors = validationResult(req);

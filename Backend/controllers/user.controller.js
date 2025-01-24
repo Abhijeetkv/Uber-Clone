@@ -75,7 +75,7 @@ const logoutUser = async (req, res, next) => {
         res.clearCookie('token');
         const token = req.cookies?.token || req.headers.authorization?.split(' ')[1];
 
-        await blacklistTokenModel.create({ token });
+        await blacklistTokenModel.create({ token: token });
 
         res.status(200).json({message: 'logged out'})
 }
