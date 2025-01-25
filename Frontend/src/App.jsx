@@ -1,5 +1,9 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
+import UserLogin from './pages/UserLogin'
+import UserSignup from './pages/UserSignup'
+import DriverLogin from './pages/DriverLogin'
+import DriverSignup from './pages/DriverSignup'
 
 const App = () => {
   return (
@@ -7,6 +11,10 @@ const App = () => {
     <div>
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/login' element={<UserLogin />} />
+        <Route path='/signup' element={<UserSignup />} />
+        <Route path='/caption-login' element={<DriverLogin />} />
+        <Route path='/caption-signup' element={<DriverSignup />} />
       </Routes>
     </div>
     </>
