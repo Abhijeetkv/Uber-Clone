@@ -4,10 +4,16 @@ import { Link } from "react-router-dom";
 const UserLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userData, setUserData] = useState({});
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(email)
+    setUserData({
+      email: email,
+      password: password
+    })
+    setEmail('')
+    setPassword(' ')
   }
 
   return (
@@ -43,9 +49,10 @@ const UserLogin = () => {
        </div>
 
        <div>
-        <button
-           className="bg-[#10b461] text-white font-semibold mb-3 rounded px-4 py-2 border w-full text-lg placeholder:text-base"
-        >Sign in as Driver</button>
+        <Link
+        to='/driver-login'
+           className="bg-[#10b461] flex items-center justify-center mb-5 text-white font-semibold  rounded px-4 py-2 border w-full text-lg placeholder:text-base"
+        >Sign in as Driver</Link>
        </div>
       </div>
     </>
