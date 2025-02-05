@@ -49,7 +49,7 @@ const DriverSignup = () => {
 
        <div>
         <Link
-        to='/driver-login'
+        to='/login'
            className="bg-[#10b461] flex items-center justify-center mb-5 text-white font-semibold  rounded px-4 py-2 border w-full text-lg placeholder:text-base"
         >Sign in as Driver</Link>
        </div>
