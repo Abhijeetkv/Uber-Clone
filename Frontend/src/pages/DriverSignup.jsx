@@ -3,11 +3,11 @@ import React from 'react'
 const DriverSignup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userData, setUserData] = useState({});
+  const [driverData, setDriverData] = useState({});
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setUserData({
+    setDriverData({
       email: email,
       password: password
     })
@@ -19,7 +19,7 @@ const DriverSignup = () => {
     <>
       <div className="p-7 flex flex-col justify-between h-screen">
        <div>
-       <img className="w-16 mb-10" src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png" alt="" />
+       <img className="w-16 mb-10" src="https://pngimg.com/d/uber_PNG24.png" alt="" />
       <form onSubmit={(e) => submitHandler()}>
         <h3 className="text-lg font-medium mb-2">What's your email</h3>
         <input
