@@ -7,6 +7,7 @@ const DriverSignup = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    
     setDriverData({
       email: email,
       password: password
