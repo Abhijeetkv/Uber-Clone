@@ -5,6 +5,7 @@ const DriverSignup = () => {
   const [password, setPassword] = useState("");
   const [driverData, setDriverData] = useState({});
   
+  
   const submitHandler = (e) => {
     e.preventDefault();   
     setDriverData({
