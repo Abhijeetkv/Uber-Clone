@@ -76,7 +76,7 @@ const DriverSignup = () => {
               type="submit"
               className="bg-[#111] text-white mt-5 font-semibold mb-3 rounded px-4 py-2 border w-full text-lg placeholder:text-base"
             >
-              Signup
+              Create Account
             </button>
           </form>
           <p className="text-center">
