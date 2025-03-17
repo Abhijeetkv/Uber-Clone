@@ -28,6 +28,7 @@ const UserSignup = () => {
 
       if (res.status === 201) {
         setUser(res.data.user);
+        localStorage.setItem("token", res.data.token);
         navigate('/home');
       }
     } catch (error) {

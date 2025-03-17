@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { data, Link, useNavigate } from "react-router-dom";
 import { userDataContext } from "../context/UserContext";
 import axios from 'axios';
 
@@ -23,6 +23,7 @@ const UserLogin = () => {
       const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/login`, userData);
       if (res.status === 200) {
         setUser(res.data.user);
+        localStorage.setItem("token", res.data.token);
         navigate('/home');
       }
     } catch (error) {
