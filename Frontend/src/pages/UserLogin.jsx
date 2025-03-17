@@ -15,7 +15,9 @@ const UserLogin = () => {
     e.preventDefault();
     setError(""); // Reset error before a new request
 
-    const userData = { email, password };
+    const userData = {
+       email: email,
+       password: password };
 
     try {
       const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/login`, userData);
