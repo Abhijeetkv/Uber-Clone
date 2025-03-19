@@ -1,33 +1,60 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react';
-
+import { DriverDataContext} from '../context/DriverContext';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const DriverSignup = () => {
+
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
-    const [userData, setUserData] = useState({});
+
+    const [vehicleColor, setVehicleColor] = useState("");
+    const [vehiclePlate, setVehiclePlate] = useState("");
+    const [vehicleCapacity, setVehicleCapacity] = useState("");
+    const [vehicleType, setVehicleType] = useState("");
+
+    const [driver, setDriver] = React.useContext(DriverDataContext);
   
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
       e.preventDefault();
-      const newUser = {
+      const driverData = {
         fullname: {
           firstname: firstname,
           lastname: lastname
         },
         email: email,
-        password: password
+        password: password,
+        vehicle: {
+          color: vehicleColor,
+          plate: vehiclePlate,
+          capacity: vehicleCapacity,
+          type: vehicleType
+        }
       };
   
-      setUserData(newUser);
-      console.log("Submitted Data:", newUser);
-  
+      const res = await axios.post(`${import.meta.VITE_BASE_URL}/drivers/register`, driverData);
+
+      if (res.status === 200) {
+        setDriver(res.data.driver);
+        localStorage.setItem('token', res.data.token);
+        navigate('/driver-home');
+      }
+
       setEmail('');
-      setPassword(''); // Fixed extra space issue
+      setPassword('');
       setFirstname('');
       setLastname('');
+      setVehicleColor('');
+      setVehiclePlate('');
+      setVehicleCapacity('');
+      setVehicleType('');
+
     };
 
   return (
@@ -73,6 +100,43 @@ const DriverSignup = () => {
               placeholder="password"
               className="bg-[#eeeeee] rounded px-4 py-2 border w-full text-lg placeholder:text-base"
             />
+
+            <h3 className="text-base font-medium mb-2 mt-2">Vehicle Information</h3>
+            <input
+              type="text"
+              required
+              value={vehicleColor}
+              onChange={(e) => setVehicleColor(e.target.value)}
+              placeholder="Vehicle Color"
+              className="bg-[#eeeeee] rounded px-4 py-2 border w-full text-lg placeholder:text-base"
+            />
+            <input
+              type="text"
+              required
+              value={vehiclePlate}
+              onChange={(e) => setVehiclePlate(e.target.value)}
+              placeholder="Vehicle Plate"
+              className="bg-[#eeeeee] rounded px-4 py-2 border w-full text-lg placeholder:text-base"
+            />
+            <input
+              type="number"
+              required
+              value={vehicleCapacity}
+              onChange={(e) => setVehicleCapacity(e.target.value)}
+              placeholder="Vehicle Capacity"
+              className="bg-[#eeeeee] rounded px-4 py-2 border w-full text-lg placeholder:text-base"
+            />
+            <select
+              required
+              value={vehicleType}
+              onChange={(e) => setVehicleType(e.target.value)}
+              className="bg-[#eeeeee] rounded px-4 py-2 border w-full text-lg placeholder:text-base"
+            >
+              <option value="" disabled>Select Vehicle Type</option>
+              <option value="car">Car</option>
+              <option value="auto">Auto</option>
+              <option value="moto">Bike</option>
+            </select>
             <button
               type="submit"
               className="bg-[#111] text-white mt-5 font-semibold mb-3 rounded px-4 py-2 border w-full text-lg placeholder:text-base"

@@ -1,6 +1,6 @@
-import { createContext, useState, useContext } from "react";
+import React, { createContext, useState } from "react";
 
-export const driverDataContext = createContext();
+export const DriverDataContext = createContext();
 
 const DriverContext = ({ children }) => {
     const [driver, setDriver] = useState(null);
@@ -9,23 +9,22 @@ const DriverContext = ({ children }) => {
 
     const updateDriver = (driverData) => {
         setDriver(driverData);
-    }
+    };
     
     const value = {
         driver,
         setDriver,
-        updateDriver,
         isLoading,
         setIsLoading,
         error,
-        setError
-    }
+        setError,
+        updateDriver,
+    };
+
     return (
-        <div>
-            <driverDataContext.Provider value={value}>
-                {children}
-            </driverDataContext.Provider>
-        </div>
+        <DriverDataContext.Provider value={value}>
+            {children}
+        </DriverDataContext.Provider>
     );
 };
 
