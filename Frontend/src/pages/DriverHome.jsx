@@ -2,7 +2,9 @@ import React from 'react'
 
 const DriverHome = () => {
   return (
+    <>
     <div>DriverHome</div>
+    </>
   )
 }
 
